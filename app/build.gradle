@@ -1,0 +1,60 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+}
+
+android {
+    namespace 'ru.akimslava.hotelreservation'
+    compileSdk 34
+
+    defaultConfig {
+        applicationId "ru.akimslava.hotelreservation"
+        minSdk 24
+        targetSdk 34
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        vectorDrawables {
+            useSupportLibrary true
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+    buildFeatures {
+        compose true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion '1.4.2'
+    }
+    packagingOptions {
+        resources {
+            excludes += '/META-INF/{AL2.0,LGPL2.1}'
+        }
+    }
+}
+
+dependencies {
+    implementation 'androidx.activity:activity-compose:1.7.2'
+    implementation 'androidx.compose.material3:material3:1.1.1'
+    implementation 'androidx.navigation:navigation-compose:2.7.2'
+
+    implementation project(path: ':data:container')
+    implementation project(path: ':common:theme')
+    implementation project(path: ':feature:hotel')
+    implementation project(path: ':feature:hotel-rooms')
+    implementation project(path: ':feature:reservation')
+    implementation project(path: ':feature:paid')
+}

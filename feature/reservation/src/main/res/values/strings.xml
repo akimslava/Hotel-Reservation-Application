@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="reservation">Бронирование</string>
+    <string name="price_with_ruble">%s ₽</string>
+    <string name="pay_button_format">Оплатить %s ₽</string>
+    <string name="mail_privacy_notice">Эти данные никому не передаются. После оплаты мы вышлем чек на указанный вами номер и почту</string>
+    <string name="email">Почта</string>
+    <string name="phone_number">Номер телефона</string>
+    <string name="information_about_consumer">Информация о покупателе</string>
+    <string name="ourist_number_format">%s турист</string>
+    <string name="add_tourist">Добавить туриста</string>
+    <string name="departure_from">Вылет из</string>
+    <string name="country_city">Страна, город</string>
+    <string name="dates">Даты</string>
+    <string name="tour_dates_format">%s - %s</string>
+    <string name="count_of_nights">Кол-во ночей</string>
+    <string name="number_of_nights_format">%d ночей</string>
+    <string name="hotel">Отель</string>
+    <string name="room">Номер</string>
+    <string name="nutrition">Питание</string>
+    <string name="name">Имя</string>
+    <string name="surname">Фамилия</string>
+    <string name="date_of_birth">Дата рождения</string>
+    <string name="citizenship">Гражданство</string>
+    <string name="passport_number">Номер загранпаспорта</string>
+    <string name="passport_validity">Срок действия загранпаспорта</string>
+    <string name="tour">Тур</string>
+    <string name="fuel_charge">Топливный сбор</string>
+    <string name="service_charge">Сервисный сбор</string>
+    <string name="total_price">К оплате</string>
+</resources>

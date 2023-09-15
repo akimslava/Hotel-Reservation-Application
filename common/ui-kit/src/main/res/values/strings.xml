@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="rating_format">%d %s</string>
+    <string name="error_message">Ошибка во время запроса, проверьте соединение с интернетом или повторите попытку позже.</string>
+    <string name="refresh">Обновить</string>
+    <string name="tob_bar_format">%s …</string>
+</resources>

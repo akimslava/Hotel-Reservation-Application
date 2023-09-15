@@ -1,0 +1,25 @@
+pluginManagement {
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+rootProject.name = "Hotel Reservation"
+include ':app'
+include ':common:theme'
+include ':common:ui-kit'
+include ':common:util'
+include ':data:container'
+include ':data:service'
+include ':feature:hotel'
+include ':feature:hotel-rooms'
+include ':feature:paid'
+include ':feature:reservation'
