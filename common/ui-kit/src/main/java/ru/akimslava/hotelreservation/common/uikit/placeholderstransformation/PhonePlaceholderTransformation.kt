@@ -1,4 +1,4 @@
-package ru.akimslava.hotelreservation.common.uikit.other
+package ru.akimslava.hotelreservation.common.uikit.placeholderstransformation
 
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.input.OffsetMapping
@@ -6,7 +6,7 @@ import androidx.compose.ui.text.input.TransformedText
 import androidx.compose.ui.text.input.VisualTransformation
 import kotlin.math.min
 
-object PhonePlaceHolderTransformation : VisualTransformation {
+object PhonePlaceholderTransformation : VisualTransformation {
     override fun filter(text: AnnotatedString): TransformedText {
         var format = "+7 (***) ***-**-**"
         for (i in text) {

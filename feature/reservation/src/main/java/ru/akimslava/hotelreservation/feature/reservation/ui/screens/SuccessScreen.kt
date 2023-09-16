@@ -39,7 +39,7 @@ import ru.akimslava.hotelreservation.common.theme.Blue
 import ru.akimslava.hotelreservation.common.theme.ErrorColor
 import ru.akimslava.hotelreservation.common.theme.GrayVariant
 import ru.akimslava.hotelreservation.common.uikit.buttons.BottomBlueNavigateButton
-import ru.akimslava.hotelreservation.common.uikit.other.PhonePlaceHolderTransformation
+import ru.akimslava.hotelreservation.common.uikit.placeholderstransformation.PhonePlaceholderTransformation
 import ru.akimslava.hotelreservation.common.uikit.text.PriceInformationRow
 import ru.akimslava.hotelreservation.common.uikit.RatingCard
 import ru.akimslava.hotelreservation.common.uikit.text.TourInformationRow
@@ -234,7 +234,7 @@ private fun ConsumerInformation(
                 },
                 isError = !viewModel.isPhoneNumberCorrect(),
                 visualTransformation = {
-                    PhonePlaceHolderTransformation
+                    PhonePlaceholderTransformation
                         .filter(
                             AnnotatedString(
                                 text = viewModel.getPhoneNumber(),
