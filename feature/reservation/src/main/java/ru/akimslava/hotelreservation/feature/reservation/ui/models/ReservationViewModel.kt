@@ -144,7 +144,7 @@ internal class ReservationViewModel(
             this.surname.isNotBlank()
 
         internal fun isDateOfBirthCorrect(): Boolean =
-            checkDateCorrection(this.dateOfBirth)
+            checkDateCorrection(date = this.dateOfBirth, withoutDots = true)
 
         internal fun isCitizenshipCorrect(): Boolean =
             this.citizenship.isNotBlank()
@@ -153,7 +153,7 @@ internal class ReservationViewModel(
             this.passportNumber.isNotBlank()
 
         internal fun isPassportValidityCorrect(): Boolean =
-            checkDateCorrection(this.passportValidity)
+            checkDateCorrection(date = this.passportValidity, withoutDots = true)
     }
 
     internal class MyViewModelProvider(

@@ -31,7 +31,9 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.unit.dp
+import androidx.core.text.isDigitsOnly
 import ru.akimslava.hotelreservation.common.theme.BackgroundBlue
 import ru.akimslava.hotelreservation.common.theme.BackgroundGray
 import ru.akimslava.hotelreservation.common.theme.BackgroundGrayVariant
@@ -42,6 +44,7 @@ import ru.akimslava.hotelreservation.common.uikit.buttons.BottomBlueNavigateButt
 import ru.akimslava.hotelreservation.common.uikit.placeholderstransformation.PhonePlaceholderTransformation
 import ru.akimslava.hotelreservation.common.uikit.text.PriceInformationRow
 import ru.akimslava.hotelreservation.common.uikit.RatingCard
+import ru.akimslava.hotelreservation.common.uikit.placeholderstransformation.DatePlaceholderTransformation
 import ru.akimslava.hotelreservation.common.uikit.text.TourInformationRow
 import ru.akimslava.hotelreservation.common.uikit.text.TouristRowTemplate
 import ru.akimslava.hotelreservation.common.util.formatPrice
@@ -359,9 +362,15 @@ private fun TouristCard(
                     label = stringResource(id = R.string.date_of_birth),
                     value = tourist.dateOfBirth,
                     onValueChange = {
-                        updateTourist(tourist.copy(dateOfBirth = it), touristNumber)
+                        if (it.isDigitsOnly()) {
+                            updateTourist(
+                                tourist.copy(dateOfBirth = it.take(8)),
+                                touristNumber,
+                            )
+                        }
                     },
                     modifier = Modifier.padding(bottom = 8.dp),
+                    visualTransformation = DatePlaceholderTransformation,
                     isError = !tourist.isDateOfBirthCorrect() && isTriedPay(),
                     keyboardType = KeyboardType.Number,
                 )
@@ -387,9 +396,15 @@ private fun TouristCard(
                     label = stringResource(id = R.string.passport_validity),
                     value = tourist.passportValidity,
                     onValueChange = {
-                        updateTourist(tourist.copy(passportValidity = it), touristNumber)
+                        if (it.isDigitsOnly()) {
+                            updateTourist(
+                                tourist.copy(passportValidity = it.take(8)),
+                                touristNumber,
+                            )
+                        }
                     },
                     isError = !tourist.isPassportValidityCorrect() && isTriedPay(),
+                    visualTransformation = DatePlaceholderTransformation,
                     keyboardType = KeyboardType.Number,
                     imeAction = ImeAction.Done,
                 )
@@ -420,6 +435,7 @@ private fun TouristTextField(
     onValueChange: (String) -> Unit,
     modifier: Modifier = Modifier,
     isError: Boolean = false,
+    visualTransformation: VisualTransformation = VisualTransformation.None,
     keyboardType: KeyboardType = KeyboardType.Text,
     imeAction: ImeAction = ImeAction.Next,
 ) {
@@ -435,6 +451,7 @@ private fun TouristTextField(
                 style = MaterialTheme.typography.titleSmall,
             )
         },
+        visualTransformation = visualTransformation,
         isError = isError,
         keyboardOptions = KeyboardOptions(
             keyboardType = keyboardType,

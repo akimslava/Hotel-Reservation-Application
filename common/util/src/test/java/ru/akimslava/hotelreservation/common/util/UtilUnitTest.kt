@@ -34,25 +34,43 @@ class UtilUnitTest {
 
     @Test
     fun checkDateCorrection_isCorrect_True() {
-        assertTrue(checkDateCorrection("12.01.2000"))
-        assertTrue(checkDateCorrection("29.02.2004"))
-        assertTrue(checkDateCorrection("12.3.1999"))
-        assertTrue(checkDateCorrection("1.1.1983"))
-        assertTrue(checkDateCorrection("31.01.2003"))
-        assertTrue(checkDateCorrection("28.02.2001"))
-        assertTrue(checkDateCorrection("30.05.2005"))
+        assertTrue(checkDateCorrection(date = "12.01.2000", withoutDots = false))
+        assertTrue(checkDateCorrection(date = "29.02.2004", withoutDots = false))
+        assertTrue(checkDateCorrection(date = "12.3.1999", withoutDots = false))
+        assertTrue(checkDateCorrection(date = "1.1.1983", withoutDots = false))
+        assertTrue(checkDateCorrection(date = "31.01.2003", withoutDots = false))
+        assertTrue(checkDateCorrection(date = "28.02.2001", withoutDots = false))
+        assertTrue(checkDateCorrection(date = "30.05.2005", withoutDots = false))
+
+        assertTrue(checkDateCorrection(date = "12012000", withoutDots = true))
+        assertTrue(checkDateCorrection(date = "29022004", withoutDots = true))
+        assertTrue(checkDateCorrection(date = "12031999", withoutDots = true))
+        assertTrue(checkDateCorrection(date = "01011983", withoutDots = true))
+        assertTrue(checkDateCorrection(date = "31012003", withoutDots = true))
+        assertTrue(checkDateCorrection(date = "28022001", withoutDots = true))
+        assertTrue(checkDateCorrection(date = "30052005", withoutDots = true))
     }
 
     @Test
     fun checkDateCorrection_isCorrect_False() {
-        assertFalse(checkDateCorrection(""))
-        assertFalse(checkDateCorrection("1.1.1"))
-        assertFalse(checkDateCorrection("1..2"))
-        assertFalse(checkDateCorrection("12.12.2000.1"))
-        assertFalse(checkDateCorrection("29.02.2001"))
-        assertFalse(checkDateCorrection("32.12.2000"))
-        assertFalse(checkDateCorrection("-1.1.2000"))
-        assertFalse(checkDateCorrection(".134.13.1"))
-        assertFalse(checkDateCorrection("12.13.2999"))
+        assertFalse(checkDateCorrection(date = "", withoutDots = false))
+        assertFalse(checkDateCorrection(date = "1.1.1", withoutDots = false))
+        assertFalse(checkDateCorrection(date = "1..2", withoutDots = false))
+        assertFalse(checkDateCorrection(date = "12.12.2000.1", withoutDots = false))
+        assertFalse(checkDateCorrection(date = "29.02.2001", withoutDots = false))
+        assertFalse(checkDateCorrection(date = "32.12.2000", withoutDots = false))
+        assertFalse(checkDateCorrection(date = "-1.1.2000", withoutDots = false))
+        assertFalse(checkDateCorrection(date = ".134.13.1", withoutDots = false))
+        assertFalse(checkDateCorrection(date = "12.13.2999", withoutDots = false))
+
+        assertFalse(checkDateCorrection(date = "", withoutDots = true))
+        assertFalse(checkDateCorrection(date = "111", withoutDots = true))
+        assertFalse(checkDateCorrection(date = "12", withoutDots = true))
+        assertFalse(checkDateCorrection(date = "121220001", withoutDots = true))
+        assertFalse(checkDateCorrection(date = "29022001", withoutDots = true))
+        assertFalse(checkDateCorrection(date = "32122000", withoutDots = true))
+        assertFalse(checkDateCorrection(date = "-112000", withoutDots = true))
+        assertFalse(checkDateCorrection(date = "134131", withoutDots = true))
+        assertFalse(checkDateCorrection(date = "12132999", withoutDots = true))
     }
 }

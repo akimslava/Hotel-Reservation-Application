@@ -1,30 +1,46 @@
 package ru.akimslava.hotelreservation.common.util
 
-fun checkDateCorrection(date: String): Boolean {
+private val availableSymbols = '0'..'9'
+fun checkDateCorrection(date: String, withoutDots: Boolean): Boolean {
     fun isLeap(year: Int): Boolean = year % 400 == 0
             || year % 4 == 0 && year % 100 != 0
-    val dateParts: List<String> = date.split('.')
-    if (
-        dateParts.size != 3
-        || dateParts.any { str -> str.any { it !in '0'..'9' } }
-    ) {
-        return false
+    val year: String
+    val month: String
+    val day: String
+    if (withoutDots) {
+        if (
+            date.length != 8
+            || date.any { it !in availableSymbols }
+        ) {
+            return false
+        }
+        year = date.takeLast(4)
+        month = date.slice(2..3)
+        day = date.take(2)
+    } else {
+        val dateParts: List<String> = date.split('.')
+        if (
+            dateParts.size != 3
+            || dateParts.any { str -> str.any { it !in availableSymbols } }
+        ) {
+            return false
+        }
+        year = dateParts[2]
+        month = dateParts[1]
+        day = dateParts[0]
     }
-    val year = dateParts[2]
     if (
         year.length != 4
         || year.toInt() < 1940
     ) {
         return false
     }
-    val month = dateParts[1]
     if (
         month.length !in 1..2
         || month.toInt() !in 1..12
     ) {
         return false
     }
-    val day = dateParts[0]
     if (
         day.length !in 1..2
         || day.toInt() !in 1..31
