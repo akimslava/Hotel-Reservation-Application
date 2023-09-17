@@ -94,6 +94,13 @@ internal class ReservationViewModel(
         _tourists.add(TouristInformation())
     }
 
+    internal fun canDelete(): Boolean = tourists.size > 1
+
+    internal fun deleteTourist(index: Int) {
+        if (index > _tourists.lastIndex) return
+        _tourists.removeAt(index)
+    }
+
     internal fun updateTourist(tourist: TouristInformation, index: Int) {
         if (index > _tourists.lastIndex) return
         _tourists[index] = _tourists[index].copy(

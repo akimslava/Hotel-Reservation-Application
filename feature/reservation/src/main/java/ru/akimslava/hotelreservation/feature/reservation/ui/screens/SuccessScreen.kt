@@ -91,8 +91,10 @@ internal fun SuccessScreen(
         TouristsInformation(
             tourists = tourists,
             addTourist = viewModel::addTourist,
+            onDeleteTourist = viewModel::deleteTourist,
             isTriedPay = viewModel::isTriedPay,
             updateTourist = viewModel::updateTourist,
+            canDelete = viewModel.canDelete(),
         )
         Spacer(modifier = Modifier.height(8.dp))
         PriceInformation(
@@ -300,9 +302,11 @@ private fun ConsumerInformation(
 private fun TouristsInformation(
     tourists: List<ReservationViewModel.TouristInformation>,
     addTourist: () -> Unit,
+    onDeleteTourist: (Int) -> Unit,
     isTriedPay: () -> Boolean,
     updateTourist: (ReservationViewModel.TouristInformation, Int) -> Unit,
     modifier: Modifier = Modifier,
+    canDelete: Boolean = false,
 ) {
     Column(modifier = modifier) {
         repeat(tourists.size) {
@@ -315,6 +319,8 @@ private fun TouristsInformation(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(16.dp),
+                canDelete = canDelete,
+                deleteTourist = { onDeleteTourist(it) },
             )
             Spacer(modifier = Modifier.height(8.dp))
         }
@@ -322,7 +328,7 @@ private fun TouristsInformation(
             text = stringResource(id = R.string.add_tourist),
             painter = painterResource(id = R.drawable.add_icon),
             background = Blue,
-            onButtonClick = addTourist,
+            onExpandClick = addTourist,
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(16.dp),
@@ -338,6 +344,8 @@ private fun TouristCard(
     updateTourist: (ReservationViewModel.TouristInformation, Int) -> Unit,
     isCardExpanded: MutableState<Boolean>,
     modifier: Modifier = Modifier,
+    canDelete: Boolean = false,
+    deleteTourist: () -> Unit = {},
 ) {
     val isExpanded = remember { isCardExpanded }
     val icon: Int
@@ -429,10 +437,12 @@ private fun TouristCard(
         ),
         painter = painterResource(id = icon),
         background = BackgroundBlue,
-        onButtonClick = onClick,
+        onExpandClick = onClick,
         modifier = modifier,
         isVisible = isExpanded.value,
         content = content,
+        canDelete = canDelete,
+        onDeleteClick = deleteTourist,
     )
 }
 
