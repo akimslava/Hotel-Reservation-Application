@@ -2,6 +2,7 @@ package ru.akimslava.hotelreservation.feature.reservation.ui.screens
 
 import androidx.compose.animation.AnimatedVisibilityScope
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -25,6 +26,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -44,6 +46,7 @@ import ru.akimslava.hotelreservation.common.uikit.buttons.BottomBlueNavigateButt
 import ru.akimslava.hotelreservation.common.uikit.placeholderstransformation.PhonePlaceholderTransformation
 import ru.akimslava.hotelreservation.common.uikit.text.PriceInformationRow
 import ru.akimslava.hotelreservation.common.uikit.RatingCard
+import ru.akimslava.hotelreservation.common.uikit.intents.openMapIntent
 import ru.akimslava.hotelreservation.common.uikit.placeholderstransformation.DatePlaceholderTransformation
 import ru.akimslava.hotelreservation.common.uikit.text.TourInformationRow
 import ru.akimslava.hotelreservation.common.uikit.text.TouristRowTemplate
@@ -119,6 +122,8 @@ private fun HotelDataPart(
     reservation: ReservationData,
     modifier: Modifier = Modifier,
 ) {
+    val context = LocalContext.current
+    val openMapsIntent = openMapIntent(location = reservation.hotelAddress)
     Card(
         modifier = Modifier.fillMaxWidth(),
         colors = CardDefaults.cardColors(
@@ -140,6 +145,9 @@ private fun HotelDataPart(
             )
             Text(
                 text = reservation.hotelAddress,
+                modifier = Modifier.clickable {
+                    context.startActivity(openMapsIntent)
+                },
                 color = Blue,
                 style = MaterialTheme.typography.titleMedium,
             )
