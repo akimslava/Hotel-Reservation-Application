@@ -58,3 +58,12 @@ dependencies {
     implementation project(path: ':feature:reservation')
     implementation project(path: ':feature:paid')
 }
+
+dependencies {
+    debugImplementation 'androidx.navigation:navigation-testing:2.7.2'
+    debugImplementation 'androidx.test.ext:junit:1.1.5'
+    debugImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+    debugImplementation 'androidx.compose.ui:ui-test-junit4:1.5.1'
+    debugImplementation 'androidx.compose.ui:ui-test-manifest'
+    debugImplementation 'androidx.compose.ui:ui-tooling'
+}
